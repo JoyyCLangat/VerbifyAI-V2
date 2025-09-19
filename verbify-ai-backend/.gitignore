@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+*.manifest
+*.spec
+
+# Virtual environment
+venv/
+.env/
+.env.bak/
+*.venv/
+
+# Jupyter / Notebooks
+.ipynb_checkpoints
+
+# Logs
+*.log
+logs/
+*.out
+
+# Cache / Temp
+.cache/
+.pytest_cache/
+.mypy_cache/
+__pypackages__/
+*.DS_Store
+*.swp
+*.swo
+
+# Pip cache
+pip-wheel-metadata/
+*.whl
+pip-log.txt
+pip-delete-this-directory.txt
+
+# VSCode / IDE
+.vscode/
+.idea/
+
+# Audio/Model files (large)
+*.wav
+*.mp3
+*.flac
+*.ogg
+models/
+checkpoints/
+
+# HuggingFace / Torch
+~/.cache/huggingface/
+~/.cache/torch/
+*.pt
+*.bin
+*.safetensors
+
+# Build
+build/
+dist/
