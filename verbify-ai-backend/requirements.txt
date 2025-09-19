@@ -1,10 +1,9 @@
-fastapi
-uvicorn[standard]
-openai-whisper
-python-Levenshtein
-transformers
-sentence-transformers
-TTS
-pydub
-soundfile
-ffmpeg-python
+fastapi==0.110.0
+uvicorn==0.29.0
+openai-whisper==20231117
+python-Levenshtein==0.23.0
+transformers==4.37.2
+sentence-transformers==2.2.2
+TTS==0.22.0  # Coqui TTS
+numpy==1.26.4
+pydantic==1.10.13
