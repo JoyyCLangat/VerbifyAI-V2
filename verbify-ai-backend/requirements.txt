@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+openai-whisper
+python-Levenshtein
+transformers
+sentence-transformers
+TTS
+pydub
+soundfile
+ffmpeg-python
