@@ -1,11 +1,9 @@
-from pydantic_settings import BaseSettings
+# app/core/config.py
+import os
+from dotenv import load_dotenv
 
-class Settings(BaseSettings):
-    WHISPER_API_KEY: str
-    GEMINI_API_KEY: str
-    ELEVENLABS_API_KEY: str
+# Load .env file
+load_dotenv()
 
-    class Config:
-        env_file = ".env"
-
-settings = Settings()
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")

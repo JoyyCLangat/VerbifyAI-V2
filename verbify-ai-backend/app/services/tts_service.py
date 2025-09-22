@@ -1,26 +1,18 @@
 # app/services/tts_service.py
 import requests
-from app.core.config import settings
+from app.core.config import ELEVENLABS_API_KEY
 
-ELEVEN_API_URL = "https://api.elevenlabs.io/v1/text-to-speech"
-VOICE_ID = "Rachel"  # can be dynamic later
+ELEVENLABS_URL = "https://api.elevenlabs.io/v1/text-to-speech"
 
-def synthesize_speech(text: str, output_path: str = "output.wav") -> str:
-    """
-    Converts text into speech using ElevenLabs API.
-    """
-    url = f"{ELEVEN_API_URL}/{VOICE_ID}"
+def text_to_speech(text: str, voice: str = "Rachel") -> bytes:
     headers = {
-        "xi-api-key": settings.ELEVENLABS_API_KEY,
-        "Content-Type": "application/json",
-        "Accept": "audio/mpeg"
+        "xi-api-key": ELEVENLABS_API_KEY,
+        "Content-Type": "application/json"
     }
-    body = {"text": text, "voice_settings": {"stability": 0.4, "similarity_boost": 0.8}}
-
-    response = requests.post(url, headers=headers, json=body)
+    payload = {
+        "text": text,
+        "voice_settings": {"stability": 0.5, "similarity_boost": 0.75}
+    }
+    response = requests.post(f"{ELEVENLABS_URL}/{voice}", headers=headers, json=payload)
     response.raise_for_status()
-
-    with open(output_path, "wb") as f:
-        f.write(response.content)
-
-    return output_path
+    return response.content  # MP3 bytes

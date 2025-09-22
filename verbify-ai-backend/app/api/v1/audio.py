@@ -1,15 +1,13 @@
 # app/api/v1/audio.py
-from fastapi import APIRouter, UploadFile
-import tempfile
+from fastapi import APIRouter, UploadFile, File
+from app.utils.audio_utils import save_audio, convert_to_wav
 from app.services.stt_service import transcribe_audio
 
 router = APIRouter()
 
-@router.post("/transcribe")
-async def transcribe_audio_route(file: UploadFile):
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp:
-        tmp.write(await file.read())
-        tmp_path = tmp.name
-
-    text = transcribe_audio(tmp_path)
-    return {"transcription": text}
+@router.post("/stt")
+async def speech_to_text(file: UploadFile = File(...)):
+    filepath = save_audio(await file.read(), ext=file.filename.split(".")[-1])
+    wav_path = convert_to_wav(filepath)
+    text = transcribe_audio(str(wav_path))
+    return {"transcript": text}
