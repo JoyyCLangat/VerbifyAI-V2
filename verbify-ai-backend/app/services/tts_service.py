@@ -4,7 +4,7 @@ from app.core.config import ELEVENLABS_API_KEY
 
 ELEVENLABS_URL = "https://api.elevenlabs.io/v1/text-to-speech"
 
-def text_to_speech(text: str, voice: str = "Rachel") -> bytes:
+def synthesize_speech(text: str, voice: str = "Rachel") -> bytes:
     headers = {
         "xi-api-key": ELEVENLABS_API_KEY,
         "Content-Type": "application/json"
@@ -16,3 +16,4 @@ def text_to_speech(text: str, voice: str = "Rachel") -> bytes:
     response = requests.post(f"{ELEVENLABS_URL}/{voice}", headers=headers, json=payload)
     response.raise_for_status()
     return response.content  # MP3 bytes
+

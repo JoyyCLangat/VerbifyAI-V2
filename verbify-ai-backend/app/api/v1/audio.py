@@ -1,13 +1,16 @@
 # app/api/v1/audio.py
-from fastapi import APIRouter, UploadFile, File
-from app.utils.audio_utils import save_audio, convert_to_wav
-from app.services.stt_service import transcribe_audio
+from fastapi import APIRouter
+from app.services import stt_service
 
 router = APIRouter()
 
-@router.post("/stt")
-async def speech_to_text(file: UploadFile = File(...)):
-    filepath = save_audio(await file.read(), ext=file.filename.split(".")[-1])
-    wav_path = convert_to_wav(filepath)
-    text = transcribe_audio(str(wav_path))
-    return {"transcript": text}
+# Replace this with your mic device name
+MIC_DEVICE = "Headset Microphone (Samsung USB C Earphones)"
+
+@router.get("/record")
+def record_and_transcribe(duration: int = 5):
+    """
+    Record audio from the Samsung mic and transcribe it.
+    """
+    text = stt_service.record_and_transcribe(MIC_DEVICE, duration)
+    return {"transcription": text}

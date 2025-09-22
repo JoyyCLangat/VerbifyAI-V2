@@ -1,9 +1,22 @@
-fastapi
-uvicorn
-requests
-pydantic
-python-dotenv
-soundfile
-google-generativeai
-requests
+# Core API
+fastapi==0.117.1
+uvicorn[standard]==0.36.0
 
+# Audio processing
+pydub==0.25.1
+sounddevice==0.5.1
+numpy==1.26.4
+
+# Whisper (offline STT via faster-whisper)
+faster-whisper==1.0.3
+ctranslate2>=4.0.0  # required by faster-whisper
+
+# Google Gemini (NLP)
+google-generativeai==0.7.2
+
+# ElevenLabs (TTS)
+elevenlabs==1.9.0
+
+# Utils
+python-dotenv==1.0.1
+typing-extensions>=4.9.0
