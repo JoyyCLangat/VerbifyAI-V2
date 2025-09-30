@@ -19,8 +19,8 @@ WORDS = ["Hello", "World", "Monkey", "Python", "AI"]
 
 
 # 🔊 ElevenLabs TTS
-def speak_with_elevenlabs(text, voice="Rachel"):
-    url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice}"
+def speak_with_elevenlabs(text, voice_id = "FGY2WhTYpPnrIDTdsKH5"):
+    url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}"
     headers = {
         "xi-api-key": ELEVENLABS_API_KEY,
         "Content-Type": "application/json"
